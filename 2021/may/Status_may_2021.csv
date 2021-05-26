@@ -38,3 +38,4 @@ event_timestamp;notification_timestamp;notification_profile;charging_station_nam
 2021-05-25T03:15:59Z;2021-05-25T03:17:00.470888Z;delta_offline;charge_&_drive_khushaiguda_hyd0025;incndhyd0025;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;
 2021-05-25T04:44:34Z;2021-05-25T04:45:35.493684Z;delta_offline;charge_&_drive_bachupally_hyd0034;incndhyd0034;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;2:20:50
 2021-05-25T08:29:13Z;2021-05-25T08:30:13.590945Z;delta_offline;charge_&_drive_bachupally_hyd0034;incndhyd0034;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;1:00:32
+2021-05-25T13:21:01Z;2021-05-25T13:22:01.394888Z;delta_offline;charge_&_drive_bachupally_hyd0034;incndhyd0034;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;0:01:30
