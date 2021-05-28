@@ -3,3 +3,5 @@
 *.bat
 tokens.py
 /2021/may/*.csv
+zapusk.bat
+zapusk _api.bat
