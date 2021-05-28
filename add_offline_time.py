@@ -93,21 +93,27 @@ for line in data:
 
             resp_json = json.loads(response.text)
             status = resp_json['status']
-            connectorStatuses = set()
-            for connector in resp_json['connectorStatuses']:
-                connectorStatuses.add(connector['connectorStatus']['status'])
+            connectorStatuses = []
+            connectors = [0]
+            statuses = resp_json['connectorStatuses']
+            for connector_num in range(len(statuses)):
+                connectorStatuses.append(statuses[connector_num]['connectorStatus']['status'])
+                if statuses[connector_num]['connectorStatus']['status'] in ('OCCUPIED', 'AVAILABLE'):
+                    connectors[0] = connector_num
+
+            print(connectors)
             print(station_id)
             print(connectorStatuses)
             print(status)
 
             lastupdate = datetime.strptime(
-                resp_json['connectorStatuses'][0]['connectorStatus']['lastUpdated'][:19], '%Y-%m-%dT%H:%M:%S')
+                statuses[connectors[0]]['connectorStatus']['lastUpdated'][:19], '%Y-%m-%dT%H:%M:%S')
 
             if status == 'ONLINE' and (('AVAILABLE' in connectorStatuses) or ('OCCUPIED' in connectorStatuses)):
                 line[-1] = str(lastupdate - eventstamp)
             elif new_month_flag:
-                line[-1] = str(now - lastupdate)
                 new_month_table.append(line)
+                line[-1] = str(now - lastupdate)
             else:
                 pass
         except Exception as err:

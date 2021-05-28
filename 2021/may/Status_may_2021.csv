@@ -1,7 +1,7 @@
 Start time:;23.may.2021;;;;;;;
 End time:;31.may.2021;;;;;;;
 event_timestamp;notification_timestamp;notification_profile;charging_station_name;charging_station_id;event_type;error_code;notification_message;offline_time
-2021-05-22T02:31:55Z;2021-05-22T02:32:57.049091Z;delta_offline;charge__&__drive_vidyanagar_hyd0028;incndhyd0028;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;
+2021-05-22T02:31:55Z;2021-05-22T02:32:57.049091Z;delta_offline;charge__&__drive_vidyanagar_hyd0028;incndhyd0028;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;S
 2021-05-22T04:48:18Z;2021-05-22T04:49:18.763537Z;delta_offline;charge_&_drive_khushaiguda_hyd0025;incndhyd0025;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;1 day, 13:47:54
 2021-05-22T10:02:21Z;2021-05-22T10:03:21.144530Z;delta_offline;charge_&_drive_bachupally_hyd0034;incndhyd0034;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;21:51:06
 2021-05-22T12:10:06Z;2021-05-22T16:10:07.320558Z;charger_is_offline_;charge_&_drive_begumpet_hyd0002;incndhyd0002;charging_station_offline;charging_station_has_been_offline_for_4_hours;the_charger_is_offline_for_the_past_4_;1 day, 3:28:34
@@ -40,3 +40,15 @@ event_timestamp;notification_timestamp;notification_profile;charging_station_nam
 2021-05-25T08:29:13Z;2021-05-25T08:30:13.590945Z;delta_offline;charge_&_drive_bachupally_hyd0034;incndhyd0034;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;1:00:32
 2021-05-25T13:21:01Z;2021-05-25T13:22:01.394888Z;delta_offline;charge_&_drive_bachupally_hyd0034;incndhyd0034;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;0:01:30
 2021-05-25T18:32:34Z;2021-05-25T18:33:36.153958Z;delta_offline;charge_&_drive_khushaiguda_hyd0025;incndhyd0025;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;8:13:38
+2021-05-26T03:01:32Z;2021-05-26T03:02:33.048334Z;delta_offline;charge_&_drive_khushaiguda_hyd0025;incndhyd0025;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;1 day, 20:42:57
+2021-05-26T07:43:44Z;2021-05-26T07:44:47.158813Z;delta_offline;charge_&_drive_bachupally_hyd0034;incndhyd0034;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;0:01:17
+2021-05-26T08:21:18Z;2021-05-26T08:22:19.412504Z;delta_offline;charge_&_drive_attapur_hyd0003;incndhyd0003;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;0:08:18
+2021-05-26T09:59:27Z;2021-05-26T10:00:29.066247Z;delta_offline;charge_&_drive_bachupally_hyd0034;incndhyd0034;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;16:47:57
+2021-05-26T11:12:22Z;2021-05-26T11:13:22.842930Z;delta_offline;charge_&_drive_attapur_hyd0003;incndhyd0003;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;15:45:38
+2021-05-26T14:10:52Z;2021-05-26T14:11:53.906825Z;delta_offline;charge_&_drive_bachupally_hyd0034;incndhyd0034;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;12:36:32
+2021-05-26T14:35:19Z;2021-05-26T14:36:21.105524Z;delta_offline;charge_&_drive_bachupally_hyd0034;incndhyd0034;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;12:12:05
+2021-05-26T20:39:27Z;2021-05-26T20:40:28.592860Z;delta_offline;charge_&_drive_hmr_madhapur_hyd0036;incndhyd0036;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;3:08:42
+2021-05-26T23:46:09Z;2021-05-26T23:47:09.580523Z;delta_offline;charge_&_drive_hmr_madhapur_hyd0036;incndhyd0036;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;0:02:00
+2021-05-27T05:50:51Z;2021-05-27T05:50:52.505161Z;charger_is_offline_;charge_&_drive__tarnaka_hyd0012;incndhyd0012;vendor_error_code;123asd;exicom_charger_threw_"123asd";0:00:39
+2021-05-27T20:39:27Z;2021-05-27T20:40:27.181157Z;delta_offline;charge_&_drive_pahadi_shareef_hyd0040;incndhyd0040;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;5:03:20
+2021-05-28T05:19:29Z;2021-05-28T05:20:31.349871Z;delta_offline;charge_&_drive_khushaiguda_hyd0025;incndhyd0025;charging_station_offline;charging_station_has_been_offline_for_1_minute;your_charger_is_offline;
