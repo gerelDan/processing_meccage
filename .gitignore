@@ -1,1 +1,5 @@
+/shelf/
+/workspace.xml
+*.bat
 tokens.py
+/2021/*
