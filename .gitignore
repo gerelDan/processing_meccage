@@ -2,6 +2,6 @@
 /workspace.xml
 *.bat
 tokens.py
-/2021/may/*.csv
+/2021/**.*.csv
 zapusk.bat
 zapusk _api.bat
