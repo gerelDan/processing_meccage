@@ -89,11 +89,6 @@ for line in data:
                 if statuses[connector_num]['connectorStatus']['status'] in ('OCCUPIED', 'AVAILABLE'):
                     connectors[0] = connector_num
 
-            print(connectors)
-            print(station_id)
-            print(connectorStatuses)
-            print(status)
-
             lastupdate = datetime.strptime(
                 statuses[connectors[0]]['connectorStatus']['lastUpdated'][:19], '%Y-%m-%dT%H:%M:%S')
 
@@ -101,6 +96,7 @@ for line in data:
                 line[-1] = str(lastupdate - eventstamp)
             elif new_month_flag:
                 new_month_table.append(line)
+                line[0] = str(now)[0:10] + 'T' + str(now)[12:19] + 'Z'
                 line[-1] = str(now - lastupdate)
             else:
                 pass
