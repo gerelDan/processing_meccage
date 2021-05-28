@@ -1,15 +1,11 @@
 import json
 import time
-
 import requests as req
-
 from datetime import datetime, timezone
-
 import calendar
-
 import os.path
+from tokens import token_api
 
-import sys
 
 
 def write_csv(file: str, message_report: list):
@@ -69,14 +65,6 @@ s_id.close()
 
 station_ids = {x.split(';')[0]: x.split(';')[1] for x in stations[1:]}
 
-try:
-    api = sys.argv[1]
-except IndexError as err:
-    print('You must lunch with your api key for example:'
-          '"py add_offline.py asdfasdfadfa" where "asdfasdfadfa" is api key'
-          )
-    exit()
-
 new_month_table = []
 
 for line in data:
@@ -87,7 +75,7 @@ for line in data:
             url = 'https://cd-hub-gw.tingcore-infra.com/v1/charging-stations/' + station_ids[station_id] + ':dynamic'
             response = req.request('GET', url, headers={
                 'Accept': 'application/json',
-                'x-api-key': api
+                'x-api-key': token_api
             }, verify=False
                                    )
 
