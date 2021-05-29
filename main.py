@@ -67,9 +67,9 @@ months = ['january', 'february', 'march', 'april',
           'may', 'june', 'july', 'august', 'september',
           'october', 'november', 'december']
 
-day =today.day
-year = str(today.year)
-month = today.month
+day =now_utc.day
+year = str(now_utc.year)
+month = now_utc.month
 month_str = months[month - 1]
 
 def directory_year(year: str):
@@ -85,11 +85,11 @@ directory_year(str(year))
 directory_month(month_str, str(year))
 
 
-file_name = str(year) + '/' + months[month - 1] + '/' + 'Status_' + months[month - 1] + '_' + year + '.csv'
+file_name = str(year) + '/' + months[month - 1] + '/' + 'Status_' + month_str + '_' + year + '.csv'
 
 if not os.path.exists(file_name):
     data = open(file_name, 'w')
-    start = 'Start time:;' +  str(day) + '.' + str(months[month-1]) + '.' + str(year)
+    start = 'Start time:;' +  str(day) + '.' + month_str + '.' + str(year)
     end = 'End time:;' + str(calendar.monthrange(year, month)[1]) + '.' + months[month-1] + '.' + str(year)
     data.write(start + '\n')
     data.write(end + '\n')
