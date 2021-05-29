@@ -84,25 +84,27 @@ for line in data:
             connectorStatuses = []
             connectors = [0]
             statuses = resp_json['connectorStatuses']
-            for connector_num in range(len(statuses)):
-                connectorStatuses.append(statuses[connector_num]['connectorStatus']['status'])
-                if statuses[connector_num]['connectorStatus']['status'] in ('OCCUPIED', 'AVAILABLE'):
-                    connectors[0] = connector_num
-
-            lastupdate = datetime.strptime(
-                statuses[connectors[0]]['connectorStatus']['lastUpdated'][:19], '%Y-%m-%dT%H:%M:%S')
-
-            if status == 'ONLINE' and (('AVAILABLE' in connectorStatuses) or ('OCCUPIED' in connectorStatuses)):
-                line[-1] = str(lastupdate - eventstamp)
-            elif new_month_flag:
-                new_month_table.append(line)
-                line[0] = str(now)[0:10] + 'T' + str(now)[12:19] + 'Z'
-                line[-1] = str(now - lastupdate)
-            else:
-                pass
         except Exception as err:
             print(err)
             line[-1] = 'Station not found'
+            continue
+
+        for connector_num in range(len(statuses)):
+            connectorStatuses.append(statuses[connector_num]['connectorStatus']['status'])
+            if statuses[connector_num]['connectorStatus']['status'] in ('OCCUPIED', 'AVAILABLE'):
+                connectors[0] = connector_num
+
+        lastupdate = datetime.strptime(
+            statuses[connectors[0]]['connectorStatus']['lastUpdated'][:19], '%Y-%m-%dT%H:%M:%S')
+
+        if status == 'ONLINE' and (('AVAILABLE' in connectorStatuses) or ('OCCUPIED' in connectorStatuses)):
+            line[-1] = str(lastupdate - eventstamp)
+        elif new_month_flag:
+            new_month_table.append(line)
+            line[0] = str(now)[0:10] + 'T' + str(now)[12:19] + 'Z'
+            line[-1] = str(now - lastupdate)
+        else:
+            pass
 
 table_csv = header + data
 

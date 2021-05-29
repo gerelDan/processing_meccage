@@ -101,7 +101,6 @@ if not os.path.exists(file_name):
 else:
     df = read_csv(file_name)
 
-#print(df)
 message_report = []
 
 day_ago = today - timedelta(hours=25)
