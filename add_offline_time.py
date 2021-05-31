@@ -63,8 +63,12 @@ def get_time_offline(data_list: list, new_month_flag: bool, new_month_table: lis
         if line[-1] == '':
             station_id = line[4].upper()
             event_time_stamp = datetime.strptime(line[0][:19], '%Y-%m-%dT%H:%M:%S')
-            resp_json = get_json_text(station_ids[
-                                          station_id])
+            try:
+                resp_json = get_json_text(station_ids[station_id])
+            except:
+                print('Station not found')
+                line[-1] = 'Station not found'
+                continue
             if resp_json != 'Station not found':
                 status = resp_json['status']
                 statuses = resp_json['connectorStatuses']
