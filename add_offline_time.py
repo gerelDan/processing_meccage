@@ -41,12 +41,12 @@ def get_json_text(id_st):
                            )
 
     resp_json = json.loads(response.text)
-    try:
-        statuses = resp_json['connectorStatuses']
-    except Exception as err:
-        print(err)
+    print(resp_json)
+    if len(resp_json) == 4:
+        return resp_json
+    else:
+        print('Station not found')
         return 'Station not found'
-    return resp_json
 
 
 def get_time_offline(data_list: list, new_month_flag: bool, new_month_table: list, station_ids: dict):
@@ -62,7 +62,7 @@ def get_time_offline(data_list: list, new_month_flag: bool, new_month_table: lis
     for line in data_list:
         if line[-1] == '':
             station_id = line[4].upper()
-            eventstamp = datetime.strptime(line[0][:19], '%Y-%m-%dT%H:%M:%S')
+            event_time_stamp = datetime.strptime(line[0][:19], '%Y-%m-%dT%H:%M:%S')
             resp_json = get_json_text(station_ids[
                                           station_id])
             if resp_json != 'Station not found':
@@ -71,22 +71,22 @@ def get_time_offline(data_list: list, new_month_flag: bool, new_month_table: lis
             else:
                 line[-1] = resp_json
                 continue
-            connectorstatuses = []
+            connector_statuses = []
             connectors = 0
             for connector_num in range(len(statuses)):
-                connectorstatuses.append(statuses[connector_num]['connectorStatus']['status'])
+                connector_statuses.append(statuses[connector_num]['connectorStatus']['status'])
                 if statuses[connector_num]['connectorStatus']['status'] in ('OCCUPIED', 'AVAILABLE'):
                     connectors = connector_num
 
-            lastupdate = datetime.strptime(
+            last_update = datetime.strptime(
                 statuses[connectors]['connectorStatus']['lastUpdated'][:19], '%Y-%m-%dT%H:%M:%S')
 
-            if status == 'ONLINE' and (('AVAILABLE' in connectorstatuses) or ('OCCUPIED' in connectorstatuses)):
-                line[-1] = str(lastupdate - eventstamp)
+            if status == 'ONLINE' and (('AVAILABLE' in connector_statuses) or ('OCCUPIED' in connector_statuses)):
+                line[-1] = str(last_update - event_time_stamp)
             elif new_month_flag:
                 new_month_table.append(line)
                 line[0] = str(now)[0:10] + 'T' + str(now)[12:19] + 'Z'
-                line[-1] = str(now - lastupdate)
+                line[-1] = str(now - last_update)
     return data_list, new_month_table
 
 
