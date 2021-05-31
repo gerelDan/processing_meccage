@@ -41,7 +41,6 @@ def get_json_text(id_st):
                            )
 
     resp_json = json.loads(response.text)
-    print(resp_json)
     if len(resp_json) == 4:
         return resp_json
     else:
