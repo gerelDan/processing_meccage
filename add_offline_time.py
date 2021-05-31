@@ -1,7 +1,7 @@
 import json
 import time
 import requests as req
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import calendar
 import os.path
 from tokens import token_api
@@ -112,6 +112,40 @@ def create_new_csv(now, months_name_list: list, new_month_table: list):
     table_csv = [start, end] + new_month_table
     write_csv(file_name, table_csv)
 
+def time_off_time(data: list, stations: dict):
+    """
+    this function calculate time offline for all station from last month
+    :param stations: dict station id
+    :param data: list all detected errors from month
+    :return: dict
+    """
+    time_off =dict()
+    for station in stations:
+        time_offline_ststion = timedelta()
+        for line in data:
+            if station.lower() == line[4]:
+                timesy = line[-1].split(', ')
+                if len(timesy) > 1:
+                    day = timesy[0]
+                    timing = timesy[1].split(':')
+                    tdt = timedelta(
+                        days=int(day.split(' ')[0]),
+                        hours=int(timing[0]),
+                        minutes=int(timing[1]),
+                        seconds=int(timing[2])
+                    )
+
+                elif len(timesy) == 1 and timesy[0] != '':
+                    timing = timesy[0].split(':')
+                    tdt = timedelta(
+                        days=int(day.split(' ')[0]),
+                        hours=int(timing[0]),
+                        minutes=int(timing[1]),
+                        seconds=int(timing[2])
+                    )
+                time_offline_ststion += tdt
+        time_off[station] = str(time_offline_ststion)
+    return time_off
 
 now = datetime.now(timezone.utc)
 
@@ -152,7 +186,7 @@ else:
 s_id = open('Station_ID.csv', 'r')
 stations = {x[:-1].split(';')[0]: x[:-1].split(';')[1] for x in s_id}
 s_id.close()
-
+stations.pop('Charging Station ID')
 new_month_table = []
 
 data, new_month_table = get_time_offline(data, new_month_flag, new_month_table, stations)
@@ -163,3 +197,10 @@ write_csv(file_name, table_csv)
 
 if new_month_flag:
     create_new_csv(now, months_name_list, new_month_table)
+    time_off = time_off_time(data, stations)
+    file_name_analyze = str_year + '/' + str_month + '/' + 'analyze_' + str_month + '_' + str_year + '.csv'
+    table = open(file_name_analyze, 'w')
+    table.write('Station;time_offline' + '\n')
+    for station in time_off:
+        table.write(station +';' + time_off[station] + '\n')
+    table.close()
