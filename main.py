@@ -109,14 +109,16 @@ months = ['january', 'february', 'march', 'april',
           'october', 'november', 'december']
 
 day = now_utc.day
-year = str(now_utc.year)
+year = now_utc.year
+year_str = str(now_utc.year)
 month = now_utc.month
 month_str = months[month - 1]
 
 directory_year(str(year))
 directory_month(month_str, str(year))
 
-file_name = str(year) + '/' + months[month - 1] + '/' + 'Status_' + month_str + '_' + year + '.csv'
+file_name = str(year) + '/' + months[month - 1] + '/' + 'Status_' + month_str + '_' + year_str + '.csv'
+
 
 if not os.path.exists(file_name):
     data = open(file_name, 'w')

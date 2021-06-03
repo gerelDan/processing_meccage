@@ -5,7 +5,29 @@ from datetime import datetime, timezone, timedelta
 import calendar
 import os.path
 from tokens import token_api
-from main import directory_year, directory_month
+
+
+def directory_year(year_now: str):
+    """
+    this function check availability folder with name year and create this
+    if this folder not found
+    :param year_now: str
+    :return:
+    """
+    if not os.path.exists(year_now):
+        os.mkdir(year_now)
+
+
+def directory_month(month_now: str, year_now: str):
+    """
+    this function check availability folder with name year\\month and create this
+    if this folder not found
+    :param month_now: str
+    :param year_now: str
+    :return:
+    """
+    if not os.path.exists(year_now + '/' + month_now):
+        os.mkdir(year_now + '/' + month_now)
 
 
 def write_csv(file: str, message_report: list):
@@ -48,7 +70,7 @@ def get_json_text(id_st):
         return 'Station not found'
 
 
-def get_time_offline(data_list: list, new_month_flag: bool, new_month_table: list, station_ids: dict):
+def get_time_offline(now, data_list: list, new_month_flag: bool, new_month_table: list, station_ids: dict):
     """
     this function take last update status connector
     :param data_list: list
@@ -62,6 +84,7 @@ def get_time_offline(data_list: list, new_month_flag: bool, new_month_table: lis
         if line[-1] == '':
             station_id = line[4].upper()
             event_time_stamp = datetime.strptime(line[0][:19], '%Y-%m-%dT%H:%M:%S')
+            now = datetime.strptime((str(now)[:10] + 'T' + str(now)[11:19]), '%Y-%m-%dT%H:%M:%S')
             try:
                 resp_json = get_json_text(station_ids[station_id])
             except:
@@ -88,7 +111,6 @@ def get_time_offline(data_list: list, new_month_flag: bool, new_month_table: lis
                 line[-1] = str(last_update - event_time_stamp)
             elif new_month_flag:
                 new_month_table.append(line)
-                line[0] = str(now)[0:10] + 'T' + str(now)[12:19] + 'Z'
                 line[-1] = str(now - last_update)
     return data_list, new_month_table
 
@@ -169,6 +191,8 @@ if not os.path.exists(str_year + '/' + str_month):
     month -= 1
     new_month_flag = True
 
+str_month = months_name_list[month - 1]
+str_year = str(year)
 file_name = str_year + '/' + str_month + '/' + 'Status_' + str_month + '_' + str_year + '.csv'
 
 table_csv = []
@@ -189,7 +213,7 @@ s_id.close()
 stations.pop('Charging Station ID')
 new_month_table = []
 
-data, new_month_table = get_time_offline(data, new_month_flag, new_month_table, stations)
+data, new_month_table = get_time_offline(now, data, new_month_flag, new_month_table, stations)
 
 table_csv = header + data
 
