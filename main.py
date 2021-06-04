@@ -74,8 +74,12 @@ def connect_box():
     :return: all massage folder inbox
     """
     outlook = win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI")
-    inbox = outlook.GetDefaultFolder(6)
-    return inbox.Items
+    inbox = outlook.Folders(1)
+    if str(inbox) == 'daniil.yermoshin@fortum.com':
+        AWS = inbox.Folders(27)
+    else:
+        AWS = inbox.Folders(23)  # for release 23
+    return AWS.Items
 
 
 def directory_year(year_now: str):
