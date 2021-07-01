@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import datetime
 import os.path
 
 import schedule
@@ -9,7 +9,6 @@ from function import *
 
 def take_mails():
     now_utc = datetime.now(timezone.utc)
-
     months = ['january', 'february', 'march', 'april',
               'may', 'june', 'july', 'august', 'september',
               'october', 'november', 'december']
@@ -40,20 +39,22 @@ def take_mails():
         df = read_csv(file_name)[1]
 
     message_report = []
-    day_ago = now_utc - timedelta(hours=25)
+    day_ago = now_utc + timedelta(hours=3)
+
     messages = connect_box()
     messages.Sort("[CreationTime]", True)
-
     for i in range(len(messages)):
         try:
             if messages[i].CreationTime < day_ago:
                 break
         except Exception as err:
+            print(err)
             log = open('logs.txt', 'a')
-            log.write(now_utc + ' ' + str(messages[i].SenderName) + ' '
+            log.write(str(now_utc) + ' ' + str(messages[i].SenderName) + ' '
                       + str(messages[i].Subject) + str(err) + '\n')
             log.close()
             continue
+        print(messages[i].CreationTime, '>', day_ago, 'continue')
         try:
             body_content = messages[i].Body
             try:
@@ -142,13 +143,13 @@ def add_offline_time():
         for station in time_off:
             table.write(station + ',' + time_off[station] + '\n')
         table.close()
-    global start_programm_timestamp
+    global start_program_timestamp
     now_work = datetime.utcnow()
-    print('sum time work script:', now_work - start_programm_timestamp)
+    print('sum time work script:', now_work - start_program_timestamp)
     print('last time script worked:', now_work)
 
 
-start_programm_timestamp = datetime.utcnow()
+start_program_timestamp = datetime.utcnow()
 take_mails()
 add_offline_time()
 schedule.every(10).minutes.do(take_mails)

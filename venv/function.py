@@ -17,6 +17,7 @@ def pars_mail(body_mail):
     """
 
     pars_body = body_mail.split('\r\n')
+#    print(pars_body)
     elem = []
     flag = False
     for row in pars_body[1:14]:
@@ -158,6 +159,7 @@ def get_json_text(id_st):
         return resp_json
     else:
         print('Station not found')
+        print(resp_json)
         return 'Station not found'
 
 
@@ -172,7 +174,7 @@ def get_time_offline(now, data_list: list, new_month_flag: bool, new_month_table
     """
     now_offline = set()
     for line in data_list:
-        if line[-1] == '':
+        if line[-1] == '' or line[-1] == 'Station not found':
             station_id = line[4].upper()
             now_offline.add(station_id)
             event_time_stamp = datetime.strptime(line[0][:19], '%Y-%m-%dT%H:%M:%S')
@@ -180,7 +182,7 @@ def get_time_offline(now, data_list: list, new_month_flag: bool, new_month_table
             try:
                 resp_json = get_json_text(station_ids[station_id])
             except:
-                print('Station not found')
+                print(station_id, 'Station not found')
                 line[-1] = 'Station not found'
                 continue
             if resp_json != 'Station not found':
@@ -248,10 +250,10 @@ def time_off_time(data: list, stations: dict):
         time_offline_ststion = timedelta()
         for line in data:
             if station.lower() == line[4]:
-                timesy = line[-1].split(', ')
+                timesy = line[-1].split(' ')
                 if len(timesy) > 1:
                     day = timesy[0]
-                    timing = timesy[1].split(':')
+                    timing = timesy[2].split(':')
                     tdt = timedelta(
                         days=int(day.split(' ')[0]),
                         hours=int(timing[0]),
