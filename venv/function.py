@@ -203,15 +203,24 @@ def get_time_offline(now, data_list: list, new_month_flag: bool, new_month_table
                 statuses[connectors]['connectorStatus']['lastUpdated'][:19], '%Y-%m-%dT%H:%M:%S')
 
             if status == 'ONLINE' and (('AVAILABLE' in connector_statuses) or ('OCCUPIED' in connector_statuses)):
-                times_off = str(last_update - event_time_stamp)
-                times_off = times_off.replace(',', ' ')
-                line[-1] = times_off
+                month = now.month
+                year = now.year
+                first_day_month = datetime(year=year, month=month, day=1, tzinfo=timezone.utc)
+                delta_time_first_day = now - first_day_month
+                times_off = last_update - event_time_stamp
+                if times_off > delta_time_first_day:
+                    times_off = delta_time_first_day
+                elif times_off < timedelta(hours=0, minutes=0, seconds=0):
+                    times_off = timedelta(hours=0, minutes=1, seconds=0)
+                times_off_str = str(times_off)
+                times_off_str = times_off_str.replace(',', '')
+                line[-1] = times_off_str
                 now_offline.remove(station_id)
             elif new_month_flag:
                 new_month_table.append(line)
-                times_off = str(now - last_update)
-                times_off = times_off.replace(',', ' ')
-                line[-1] = times_off
+                times_off_str = str(now - last_update)
+                times_off_str = times_off_str.replace(',', ' ')
+                line[-1] = times_off_str
     print(f'now offline : {now_offline}')
     return data_list, new_month_table
 
