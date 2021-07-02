@@ -2,6 +2,12 @@ Start time:,1.july.2021
 End time:,31.july.2021
 event_timestamp,notification_timestamp,notification_profile,charging_station_name,charging_station_id,event_type,error_code,notification_message,online_time
 2021-06-15T11:01:22Z,2021-06-15T11:02:26.075044Z,delta_offline,charge_&_drive_jubilee_hills_hyd0006,incndhyd0006,charging_station_offline,charging_station_has_been_offline_for_1_minute,your_charger_is_offline,
-2021-06-16T10:01:22Z,2021-06-16T10:02:26.108807Z,delta_offline,charge_&_drive_budvel_hyd0032,incndhyd0032,charging_station_offline,charging_station_has_been_offline_for_1_minute,your_charger_is_offline,
+2021-06-16T10:01:22Z,2021-06-16T10:02:26.108807Z,delta_offline,charge_&_drive_budvel_hyd0032,incndhyd0032,charging_station_offline,charging_station_has_been_offline_for_1_minute,your_charger_is_offline,1 day 2:35:12
 2021-06-30T23:45:59Z,2021-06-30T23:47:02.330898Z,delta_offline,charge_&_drive_hmr_madhapur_hyd0036,incndhyd0036,charging_station_offline,charging_station_has_been_offline_for_1_minute,your_charger_is_offline,0:19:09
 2021-06-30T23:58:07Z,2021-06-30T23:59:07.796409Z,delta_offline,charge_&_drive_hmr_madhapur_hyd0036,incndhyd0036,charging_station_offline,charging_station_has_been_offline_for_1_minute,your_charger_is_offline,0:07:01
+2021-07-01T06:54:27Z,2021-07-01T06:54:31.350355Z,charger_is_offline_,charge_&_drive__tarnaka_hyd0012,incndhyd0012,vendor_error_code,123asd,exicom_charger_threw_"123asd",0:07:56
+2021-07-01T07:12:01Z,2021-07-01T07:13:02.461219Z,delta_offline,charge_&_drive_attapur_hyd0003,incndhyd0003,charging_station_offline,charging_station_has_been_offline_for_1_minute,your_charger_is_offline,
+2021-07-01T07:25:06Z,2021-07-01T07:26:08.362533Z,delta_offline,charge_&_drive_bachupally_hyd0034,incndhyd0034,charging_station_offline,charging_station_has_been_offline_for_1_minute,your_charger_is_offline,0:29:38
+2021-07-01T09:05:17Z,2021-07-01T09:06:18.947498Z,delta_offline,charge_&_drive_budvel_hyd0032,incndhyd0032,charging_station_offline,charging_station_has_been_offline_for_1_minute,your_charger_is_offline,0:25:45
+2021-07-01T14:43:17Z,2021-07-01T14:44:19.466443Z,delta_offline,charge_&_drive_bachupally_hyd0034,incndhyd0034,charging_station_offline,charging_station_has_been_offline_for_1_minute,your_charger_is_offline,12:07:44
+2021-07-02T02:41:47Z,2021-07-02T02:42:47.623091Z,delta_offline,charge_&_drive_bachupally_hyd0034,incndhyd0034,charging_station_offline,charging_station_has_been_offline_for_1_minute,your_charger_is_offline,0:09:14

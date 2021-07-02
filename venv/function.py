@@ -205,11 +205,11 @@ def get_time_offline(now, data_list: list, new_month_flag: bool, new_month_table
             if status == 'ONLINE' and (('AVAILABLE' in connector_statuses) or ('OCCUPIED' in connector_statuses)):
                 month = now.month
                 year = now.year
-                first_day_month = datetime(year=year, month=month, day=1, tzinfo=timezone.utc)
+                first_day_month = datetime(year=year, month=month, day=1)
                 delta_time_first_day = now - first_day_month
                 times_off = last_update - event_time_stamp
                 if times_off > delta_time_first_day:
-                    times_off = delta_time_first_day
+                    times_off = last_update - first_day_month
                 elif times_off < timedelta(hours=0, minutes=0, seconds=0):
                     times_off = timedelta(hours=0, minutes=1, seconds=0)
                 times_off_str = str(times_off)

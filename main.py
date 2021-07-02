@@ -54,7 +54,6 @@ def take_mails():
                       + str(messages[i].Subject) + str(err) + '\n')
             log.close()
             continue
-        print(messages[i].CreationTime, '>', day_ago, 'continue')
         try:
             body_content = messages[i].Body
             try:

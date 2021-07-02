@@ -2,7 +2,7 @@
 /workspace.xml
 *.bat
 tokens.py
-2021/
+2021/**/*.csv
 zapusk.bat
 zapusk_api.bat
 new_variant.py
